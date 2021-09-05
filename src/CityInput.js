@@ -1,38 +1,31 @@
 import React, { useState } from "react";
 
-import { getTimestamp, setToStorage } from "./helpers";
+import DefaultButton from "./DefaultButton.js";
+import { getTimestamp } from "./Helpers.js";
 
 
-export default function weatherInput({ setAllTodos, setIsEditDisplayModal }) {
+export default function WeatherInput() {
     const [textInput, setTextInput] = useState("");
-  
-    /** given 'e,' set inputvariable to e
-     * @param {string} e
-     * @return void     
-     */
-
+    
     const handleChange = (e) => {
       setTextInput(e.target.value);
     };
-    
+
     /** if textInput is not blank, search input city through weather API
      * 
      */
     const handleSubmit = () => {
       if (textInput !== "") {
-        const id = new Date() + textInput;
         const newCity = {
           cityName: textInput,
-          temp: 0,
-          weatherType,
-          timestamp: getTimestamp(),
-          humidity: 0,
+          //temp: 0,
+          //weatherType: "Sunny",
+          //timestamp: getTimestamp(),
+          //humidity: 0,
         };
-        setWeatherCard(() => {
-          return newCity;
-        });
-        setTextInput("");
+        return newCity
       }
+      setTextInput("");
     };
   
     /** Allow AddTodo to return on 'Enter' keypress
@@ -42,6 +35,24 @@ export default function weatherInput({ setAllTodos, setIsEditDisplayModal }) {
 
     const handleKeypress = (e) => {
       if (e.key === "Enter") {
+        console.log("keypress")
         return handleSubmit();
       }
-    };
+      
+    }
+  return (
+    <div className="inputBox">
+      <DefaultButton
+        type1="input-button"
+        action={WeatherInput}
+        text="Go"
+      />
+      <input
+        value={textInput}
+        onChange={handleChange}
+        onKeyPress={handleKeypress}
+        placeholder="Please enter your city name"
+      />
+    </div>
+  )
+}
