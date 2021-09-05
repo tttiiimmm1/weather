@@ -4,8 +4,7 @@ import DefaultButton from "./DefaultButton.js";
 import { getTimestamp } from "./Helpers.js";
 
 
-export default function WeatherInput() {
-    const [textInput, setTextInput] = useState("");
+export default function WeatherInput({textInput, setTextInput, setSearchItem}) {
     
     const handleChange = (e) => {
       setTextInput(e.target.value);
@@ -16,14 +15,7 @@ export default function WeatherInput() {
      */
     const handleSubmit = () => {
       if (textInput !== "") {
-        const newCity = {
-          cityName: textInput,
-          //temp: 0,
-          //weatherType: "Sunny",
-          //timestamp: getTimestamp(),
-          //humidity: 0,
-        };
-        return newCity
+        setSearchItem(textInput);
       }
       setTextInput("");
     };
@@ -35,7 +27,6 @@ export default function WeatherInput() {
 
     const handleKeypress = (e) => {
       if (e.key === "Enter") {
-        console.log("keypress")
         return handleSubmit();
       }
       
@@ -44,7 +35,7 @@ export default function WeatherInput() {
     <div className="inputBox">
       <DefaultButton
         type1="input-button"
-        action={WeatherInput}
+        action={handleSubmit}
         text="Go"
       />
       <input
