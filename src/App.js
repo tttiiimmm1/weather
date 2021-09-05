@@ -13,26 +13,19 @@ function App() {
     async function fetchData() {
       try {
         const fetchedData = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=78bec356987690af36ca3c4146513bc9`
+          `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
         );
         const finalData = await fetchedData.json();
         setWeatherData(finalData);
       } catch (error) {
         console.log(error);
       }
-
-      //    fetch(
-      //       `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=78bec356987690af36ca3c4146513bc9`
-      //     )
-      //       .then((res) => res.json())
-      //       .catch(err => console.error(err))
-      //       .then((res) => setWeatherData(res))
     }
     fetchData();
   }, [searchItem]);
 
   const img = weatherData?.weather[0]?.main || "Clouds";
-
+  console.log(process.env.REACT_APP_API_KEY)
   return (
     <div className={`background ${img}`}>
       <div className="upper-bar">
