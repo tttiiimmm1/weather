@@ -9,9 +9,11 @@ import rainy from './Images/rainy-bg.PNG';
 function App() {
   return (
     <div className="background">
-      <div className="upper-bar"/>
+      <div className="upper-bar">
 
-        <img src={rainy} className="cloudy-bg" alt=""/>
+      </div>
+      <img src={rainy} className="cloudy-bg" alt=""/>
+      <div className="weather-card"/>
     </div>
   );
 }
