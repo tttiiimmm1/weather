@@ -10,9 +10,6 @@ export default function WeatherInput({
   setSearchItem,
   setUnitType,
 }) {
-
-
-
   const handleChange = (e) => {
     setTextInput(e.target.value);
   };
@@ -39,23 +36,25 @@ export default function WeatherInput({
   };
 
   const changeUnit = () => {
-    setUnitType((unitType) => !unitType);
+    setUnitType((prev) => !prev);
     return unitType;
-  }
+  };
 
   return (
     <div>
       <DefaultButton type1="input-button" action={handleSubmit} text="Go" />
-      <input  className="input-box"
+      <input
+        className="input-box"
         value={textInput}
         onChange={handleChange}
         onKeyPress={handleKeypress}
         placeholder="Please enter your city name"
       />
-      <DefaultButton type1="unit-button" action={changeUnit} text={unitType ? "Metric" : "Imperial"}/>
+      <DefaultButton
+        type1="unit-button"
+        action={changeUnit}
+        text={unitType ? "Metric" : "Imperial"}
+      />
     </div>
   );
 }
-
-//  const [unitType, setUnitType] = useState(true);
-//<DefaultButton type1="unit-button" action={setUnitType((unitType) => !unitType)} text={unitType ? "Metric" : "Imperial"}/>

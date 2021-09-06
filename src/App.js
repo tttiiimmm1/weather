@@ -14,14 +14,15 @@ function App() {
 
   const city = getCountryName(weatherData?.sys?.country);
 
-  useEffect(() => {
+  useEffect((unitType) => {
     async function fetchData() {
       try {
         const fetchedData = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=${unitType ? "metric" : "imperial"}&appid=${process.env.REACT_APP_API_KEY}`
+          unitType ? `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
+          : `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
         );
         if (fetchedData.status !== 200)
-          throw new Error("That is't a city bro!");
+          throw new Error("That isn't a city bro!");
         const finalData = await fetchedData.json();
         setWeatherData(finalData);
       } catch (error) {
@@ -40,11 +41,12 @@ function App() {
           textInput={textInput}
           setTextInput={setTextInput}
           setSearchItem={setSearchItem}
+          setUnitType={setUnitType}
         />
       </div>
 
-      <div className="weather-card {weatherData?.weather?.main}">
-        <div className="{weatherData?.weather?.main} place-name">{weatherData?.name}, {city}
+      <div className={`weather-card ${weatherData?.weather?.main}`}>
+        <div className={`${weatherData?.weather?.main} place-name`}>{weatherData?.name}, {city}
         </div>
         <div className="temp">{weatherData?.main?.temp.toFixed(0)}{unitType ? "°C" : "°F"}</div>
         <div className="weather">{weatherData?.weather[0].main}</div>
