@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import WeatherInput from "./CityInput";
+import getCountryName from "./GetCountry.js";
+
 
 function App() {
   const [textInput, setTextInput] = useState("");
@@ -8,12 +10,15 @@ function App() {
   const [weatherData, setWeatherData] = useState({
     weather: [{ main: "Clouds" }],
   });
+  const [unitType, setUnitType] = useState(true);
+
+  const city = getCountryName(weatherData?.sys?.country);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const fetchedData = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=${unitType ? "metric" : "imperial"}&appid=${process.env.REACT_APP_API_KEY}`
         );
         if (fetchedData.status !== 200)
           throw new Error("That is't a city bro!");
@@ -38,13 +43,14 @@ function App() {
         />
       </div>
 
-      <div className="weather-card">
-        <div className="place-name">{weatherData?.name}, {weatherData?.sys?.country}</div>
-        <div className="temp">{weatherData?.main?.temp.toFixed(0)}°F</div>
-        <div className="weather">{weatherData?.weather?.main}</div>
+      <div className="weather-card {weatherData?.weather?.main}">
+        <div className="{weatherData?.weather?.main} place-name">{weatherData?.name}, {city}
+        </div>
+        <div className="temp">{weatherData?.main?.temp.toFixed(0)}{unitType ? "°C" : "°F"}</div>
+        <div className="weather">{weatherData?.weather[0].main}</div>
         <div className="humidity">
           <p>Humidity :</p>
-          <p> {weatherData?.main?.humidity}%</p>
+          <p>&nbsp; {weatherData?.main?.humidity}%</p>
         </div>
       </div>
     </div>

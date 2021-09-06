@@ -20,16 +20,29 @@
   z-index: 1000;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
+
 }
 
 .input-button {
-  align-self: center;
-  width: 40px;
+  margin-top: 10px;
+  width: 60px;
+  height: 40px;
+  margin-left: 30%;
+  background-color:rgb(24, 252, 195);
+  border-radius: 4px;
+  border: 3px solid rgb(2, 148, 153);
+}
+
+.input-box {
+  width: 40%;
+  height: 37px;
+  border-radius: 4px;
+  border: 3px solid rgb(2, 148, 153);
+  margin-left: 10px;
 }
 
 .weather-card {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.65);
   height: 400px;
   width: 500px;
   margin: 5%;
@@ -69,16 +82,40 @@
 
 .Rain {
   background-image: url("./Images/rainy-bg.PNG");
+  color: rgb(11, 2, 133);
+}
+.Drizzle {
+  background-image: url("./Images/rainy-bg.PNG");
+  color: rgb(11, 2, 133);
 }
 
 .Clouds {
   background-image: url("./Images/cloudy-bg.jpg");
+  color: rgb(66, 66, 66);
 }
 
 .Clear {
-  background-image: url("./Images/sunny-bg.jpg"); 
+  background: url("./Images/sunny-bg.jpg");
+  color: rgb(184, 2, 2); 
+
 }
 
 .Mist {
   background-image: url("./Images/foggy-bg.jpg"); 
+  color: rgb(45, 95, 134);
 }
+.Fog {
+  background-image: url("./Images/foggy-bg.jpg"); 
+  color: rgb(45, 95, 134);
+}
+
+.Snow {
+  background-image: url("./Images/snowy-bg.jpg"); 
+  color: rgb(0, 116, 204);
+}
+
+.Thunderstorm {
+  background-image: url("./Images/snowy-bg.jpg"); 
+  color: rgb(0, 116, 204);
+}
+

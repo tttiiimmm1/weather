@@ -1,14 +1,18 @@
 import React from "react";
-
 import DefaultButton from "./DefaultButton.js";
 // eslint-disable-next-line
 import { getTimestamp } from "./Helpers.js";
+import unitType from "./App.js";
 
 export default function WeatherInput({
   textInput,
   setTextInput,
   setSearchItem,
+  setUnitType,
 }) {
+
+
+
   const handleChange = (e) => {
     setTextInput(e.target.value);
   };
@@ -33,15 +37,25 @@ export default function WeatherInput({
       return handleSubmit();
     }
   };
+
+  const changeUnit = () => {
+    setUnitType((unitType) => !unitType);
+    return unitType;
+  }
+
   return (
-    <div className="inputBox">
+    <div>
       <DefaultButton type1="input-button" action={handleSubmit} text="Go" />
-      <input
+      <input  className="input-box"
         value={textInput}
         onChange={handleChange}
         onKeyPress={handleKeypress}
         placeholder="Please enter your city name"
       />
+      <DefaultButton type1="unit-button" action={changeUnit} text={unitType ? "Metric" : "Imperial"}/>
     </div>
   );
 }
+
+//  const [unitType, setUnitType] = useState(true);
+//<DefaultButton type1="unit-button" action={setUnitType((unitType) => !unitType)} text={unitType ? "Metric" : "Imperial"}/>
