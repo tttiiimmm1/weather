@@ -38,7 +38,15 @@ function App() {
         />
       </div>
 
-      <div className="weather-card">{weatherData?.main?.temp}</div>
+      <div className="weather-card">
+        <div className="place-name">{weatherData?.name}, {weatherData?.sys?.country}</div>
+        <div className="temp">{weatherData?.main?.temp.toFixed(0)}°F</div>
+        <div className="weather">{weatherData?.weather?.main}</div>
+        <div className="humidity">
+          <p>Humidity :</p>
+          <p> {weatherData?.main?.humidity}%</p>
+        </div>
+      </div>
     </div>
   );
 }
