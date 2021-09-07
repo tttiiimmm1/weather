@@ -2,7 +2,7 @@ import React from "react";
 import DefaultButton from "./DefaultButton.js";
 // eslint-disable-next-line
 import { getTimestamp } from "./Helpers.js";
-import unitType from "./App.js";
+
 
 export default function WeatherInput({
   textInput,
@@ -10,6 +10,7 @@ export default function WeatherInput({
   setSearchItem,
   setUnitType,
 }) {
+  
   const handleChange = (e) => {
     setTextInput(e.target.value);
   };
@@ -37,8 +38,7 @@ export default function WeatherInput({
 
   const changeUnit = () => {
     setUnitType((prev) => !prev);
-    return unitType;
-  };
+  }
 
   return (
     <div>
@@ -53,7 +53,7 @@ export default function WeatherInput({
       <DefaultButton
         type1="unit-button"
         action={changeUnit}
-        text={unitType ? "Metric" : "Imperial"}
+        text="Units"
       />
     </div>
   );

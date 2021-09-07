@@ -18,8 +18,8 @@ function App() {
     async function fetchData() {
       try {
         const fetchedData = await fetch(
-          unitType ? `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
-          : `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
+          /*unitType ? */`https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
+          //: `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
         );
         if (fetchedData.status !== 200)
           throw new Error("That isn't a city bro!");
