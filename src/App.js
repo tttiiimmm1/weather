@@ -14,12 +14,11 @@ function App() {
 
   const city = getCountryName(weatherData?.sys?.country);
 
-  useEffect((unitType) => {
+  useEffect(() => {
     async function fetchData() {
       try {
         const fetchedData = await fetch(
-          /*unitType ? */`https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
-          //: `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${searchItem}&units=${unitType?"metric":"imperial"}&appid=${process.env.REACT_APP_API_KEY}`
         );
         if (fetchedData.status !== 200)
           throw new Error("That isn't a city bro!");
@@ -31,7 +30,7 @@ function App() {
       }
     }
     fetchData();
-  }, [searchItem]);
+  }, [searchItem, unitType]);
 
   const img = weatherData?.weather[0]?.main || "Clouds";
   return (
